@@ -26,6 +26,13 @@ public class Program
 
         var cache = new ConcurrentDictionary<string, MockApiEntry>();
 
+        app.MapGet("/", () => 
+        {
+            return Results.Redirect("/swagger");
+        })
+        .WithName("Home")
+        .WithOpenApi();
+
         app.MapGet("/list", () =>
         {
             return cache.ToList();
